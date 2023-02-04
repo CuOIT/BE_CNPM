@@ -1,0 +1,30 @@
+{
+  "name": "testapi",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon server.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^2.0.20",
+    "sequelize-cli": "^6.6.0"
+  },
+  "dependencies": {
+    "@reduxjs/toolkit": "^1.9.1",
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "express-validator": "^6.14.3",
+    "mysql": "^2.18.1",
+    "mysql2": "^3.0.1",
+    "nodemailer": "^6.9.1",
+    "nodemailer-sendgrid-transport": "^0.2.0",
+    "redux": "^4.2.0",
+    "sequelize": "^6.28.0"
+  },
+  "description": ""
+  }
