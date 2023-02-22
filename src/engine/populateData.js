@@ -15,6 +15,18 @@ const user = require("./output/users.json");
 // Add admin and staff
 user.push(
   ...[
+    {
+      phone: "0999999999",
+      user_name: "custom",
+      email: "custom@gmail.com",
+      user_password: "123123",
+      birthday: new Date(2000, 1, 1),
+      gender: true,
+      role: 1,
+      cart: "",
+      rank: 1,
+      totalMoneyHistory: 150000
+    },
     // define admin
     {
       phone: "0372443360",
