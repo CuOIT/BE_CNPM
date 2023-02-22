@@ -4,20 +4,20 @@ const getAllStaffOrder = (status) => {
   return new Promise(async (resolve, reject) => {
     try {
       let orders = await db.sequelize.query(
-        //   `SELECT Orders.id, Users.user_name, Orders.total_price, Orders.shipping_address, Vouchers.voucher_code, Orders.createdAt, Orders.updateAt, Orders.status FROM Orders INNER JOIN users ON Orders.user_id = Users.id LEFT JOIN Vouchers ON Orders.voucher_id = Vouchers.id WHERE Orders.status = ${status} ORDER BY ${
-        //   status == 0 ? "Orders.createdAt ASC" : "Orders.updatedAt DESC"
-        // };,`
-        `SELECT orders.id, users.user_name, orders.total_price, orders.shipping_address, vouchers.voucher_code, orders.createdAt, orders.updatedAt, orders.status FROM orders INNER JOIN users ON orders.user_id = users.id LEFT JOIN vouchers ON orders.voucher_id = vouchers.id WHERE orders.status = ${status} ORDER BY ${
-          status == 0 ? "orders.createdAt ASC" : "orders.updatedAt DESC"
+          `SELECT Orders.id, Users.user_name, Orders.total_price, Orders.shipping_address, Vouchers.voucher_code, Orders.createdAt, Orders.updatedAt, Orders.status FROM Orders INNER JOIN Users ON Orders.user_id = Users.id LEFT JOIN Vouchers ON Orders.voucher_id = Vouchers.id WHERE Orders.status = ${status} ORDER BY ${
+          status == 0 ? "Orders.createdAt ASC" : "Orders.updatedAt DESC"
         };`,
+        //  SELECT orders.id, users.user_name, orders.total_price, orders.shipping_address, vouchers.voucher_code, orders.createdAt, orders.updatedAt, orders.status FROM orders INNER JOIN users ON orders.user_id = users.id LEFT JOIN vouchers ON orders.voucher_id = vouchers.id WHERE orders.status = ${status} ORDER BY ${
+        //   status == 0 ? "orders.createdAt ASC" : "orders.updatedAt DESC"
+        // };`,
         {
           type: db.sequelize.QueryTypes.SELECT,
         }
       );
       const promiseArray = orders.map(async (value) => {
         const detail_order = await db.sequelize.query(
-          // `SELECT Items.name, Orderdetails.quantity FROM Orderdetails INNER JOIN Items ON Orderdetails.item_id = Items.id WHERE Orderdetails.order_id = ${value.id}`,
-          `SELECT items.name, orderdetails.quantity FROM orderdetails INNER JOIN items ON orderdetails.item_id = items.id WHERE orderdetails.order_id = ${value.id}`,
+          `SELECT Items.name, OrderDetails.quantity FROM OrderDetails INNER JOIN Items ON OrderDetails.item_id = Items.id WHERE OrderDetails.order_id = ${value.id}`,
+          // `SELECT items.name, orderdetails.quantity FROM orderdetails INNER JOIN items ON orderdetails.item_id = items.id WHERE orderdetails.order_id = ${value.id}`,
           { type: db.sequelize.QueryTypes.SELECT }
         );
         const newValue = { ...value, detail_order };
